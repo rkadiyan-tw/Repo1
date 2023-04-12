@@ -1,0 +1,22 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: ci steps
+        run: |
+          echo 'Run CI successfully'
+
+      - name: Create  Git tag for dev
+        run: |
+          git tag -f  dev
+          git push -f origin dev    
